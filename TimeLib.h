@@ -1,5 +1,5 @@
 /*
-  time.h - low level time and date functions
+  TimeLib.h - low level time and date functions
 */
 
 /*
@@ -71,7 +71,7 @@ typedef time_t(*getExternalTime)();
 #define SECS_PER_WEEK ((time_t)(SECS_PER_DAY * DAYS_PER_WEEK))
 #define SECS_PER_YEAR ((time_t)(SECS_PER_DAY * 365UL)) // TODO: ought to handle leap years
 #define SECS_YR_2000  ((time_t)(946684800UL)) // the time at the start of y2k
- 
+
 /* Useful Macros for getting elapsed time */
 #define numberOfSeconds(_time_) ((_time_) % SECS_PER_MIN)  
 #define numberOfMinutes(_time_) (((_time_) / SECS_PER_MIN) % SECS_PER_MIN) 
@@ -108,6 +108,9 @@ int     minute();          // the minute now
 int     minute(time_t t);  // the minute for the given time
 int     second();          // the second now 
 int     second(time_t t);  // the second for the given time
+#ifdef TIMELIB_ENABLE_MILLIS
+int     millisecond();     // the millisecond now
+#endif
 int     day();             // the day now 
 int     day(time_t t);     // the day for the given time
 int     weekday();         // the weekday now (Sunday is day 1) 
@@ -118,6 +121,9 @@ int     year();            // the full four digit year: (2009, 2010 etc)
 int     year(time_t t);    // the year for the given time
 
 time_t now();              // return the current time as seconds since Jan 1 1970 
+#ifdef TIMELIB_ENABLE_MILLIS
+time_t now(uint32_t& sysTimeMillis); // return the current time as seconds and milliseconds since Jan 1 1970
+#endif
 void    setTime(time_t t);
 void    setTime(int hr,int min,int sec,int day, int month, int yr);
 void    adjustTime(long adjustment);

@@ -74,7 +74,7 @@ setSyncProvider(getTimeFunction);  // set the external time provider
 setSyncInterval(interval);         // set the number of seconds between re-sync
 ```
 
-There are many convenience macros in the `time.h` file for time constants and conversion
+There are many convenience macros in the `TimeLib.h` file for time constants and conversion
 of time units.
 
 To use the library, copy the download to the Library directory.
